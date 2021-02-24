@@ -5,7 +5,7 @@
 
 项目源自比赛广岛Quest2020：柠檬外观分类使用的图像数据（第1阶段）用广岛县的柠檬形象挑战外观分类！ 
 
-比赛链接：![https://signate.jp/competitions/431](https://signate.jp/competitions/431)
+比赛链接：[https://signate.jp/competitions/431](https://signate.jp/competitions/431)
 
 ## 任务
 
