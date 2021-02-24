@@ -5,7 +5,7 @@
 
 项目源自比赛广岛Quest2020：柠檬外观分类使用的图像数据（第1阶段）用广岛县的柠檬形象挑战外观分类！ 
 
-比赛链接：https://signate.jp/competitions/431
+比赛链接：![https://signate.jp/competitions/431](https://signate.jp/competitions/431)
 
 ## 任务
 
@@ -20,11 +20,8 @@
 *有关特殊说明，请参阅“常见问题解答”以了解“卡明”期间出现的用户问题。
 *有关其他规则的详细信息，请参阅“规则”页面。
 
-<center></p>
-  
 ![](https://ai-studio-static-online.cdn.bcebos.com/75c393dba672405781994ec80e053624caae91ed242c423e87f75eb27e7624d2)
 
-	</p><center>
 
 ## 环境要求
 
