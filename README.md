@@ -19,7 +19,12 @@
 禁止将TTA（测试时间增加）用于推理。
 *有关特殊说明，请参阅“常见问题解答”以了解“卡明”期间出现的用户问题。
 *有关其他规则的详细信息，请参阅“规则”页面。
-https://static.signate.jp/competitions/362/PTRaAuXIelqs1cZsp7EXtoHqFGq4CtGhMo3cgCEr.png
+
+<center></p>
+  
+![](https://ai-studio-static-online.cdn.bcebos.com/75c393dba672405781994ec80e053624caae91ed242c423e87f75eb27e7624d2)
+
+	</p><center>
 
 ## 环境要求
 
