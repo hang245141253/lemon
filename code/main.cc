@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-
 #include "paddle_api.h"
 #include <arm_neon.h>
 #include <opencv2/opencv.hpp>
@@ -27,8 +25,8 @@
 
 using namespace paddle::lite_api;  // NOLINT
 
-const std::vector<float> INPUT_MEAN = {0.f, 0.f, 0.f};
-const std::vector<float> INPUT_STD = {1.f, 1.f, 1.f};
+const std::vector<float> INPUT_MEAN = {0.31169346f, 0.25506335f, 0.12432463f};
+const std::vector<float> INPUT_STD = {0.34042713f, 0.29819837f, 0.1375536f};
 
 std::vector<std::string> load_labels(const std::string &path) {
     std::ifstream file;
@@ -44,10 +42,10 @@ std::vector<std::string> load_labels(const std::string &path) {
     return labels;
 }
 
-
-void preprocess(cv::Mat &photo, float *input_data) {
-
-    cv::resize(photo, photo, cv::Size(224, 224), 0.f, 0.f);   //resize到224x224
+void preprocess(cv::Mat &photo,
+                float *input_data) {
+    
+    cv::resize(photo, photo, cv::Size(224, 224), 0.f, 0.f, cv::INTER_LINEAR);   //resize到224x224,INTER_LINEAR双线性插值
     cv::cvtColor(photo, photo, CV_BGRA2RGB);                  //BGR->RGB 与训练时输入一致
     photo.convertTo(photo, CV_32FC3, 1 / 255.f, 0.f);         //归一化
 //     std::cout << photo << std::endl;//查看形状
@@ -85,14 +83,12 @@ void preprocess(cv::Mat &photo, float *input_data) {
         *(input_data_c0++) = (*(image_data++) - INPUT_MEAN[0]) / INPUT_STD[0];
         *(input_data_c1++) = (*(image_data++) - INPUT_MEAN[1]) / INPUT_STD[1];
         *(input_data_c2++) = (*(image_data++) - INPUT_MEAN[2]) / INPUT_STD[2];
-    } 
-    
+    }  
 }
 
-
 void run(cv::Mat &photo,
-              std::vector<std::string> &word_labels,
-              std::shared_ptr<paddle::lite_api::PaddlePredictor> &predictor) {
+        std::vector<std::string> &word_labels,
+        std::shared_ptr<paddle::lite_api::PaddlePredictor> &predictor) {
 
     // Get Input Tensor
     std::unique_ptr<Tensor> input_tensor(std::move(predictor->GetInput(0)));
@@ -113,7 +109,6 @@ void run(cv::Mat &photo,
     for (int i = 0; i < 4; i++) {
         std::cout << "Original Output[" << i << "]: " << output_tensor->data<float>()[i] << std::endl;
     }
-
 }
 
 int main(int argc, char** argv) {
@@ -124,7 +119,6 @@ int main(int argc, char** argv) {
     MobileConfig config;
     config.set_model_from_file(model);
     std::shared_ptr<PaddlePredictor> predictor = CreatePaddlePredictor<MobileConfig>(config);
-
 
     if (argc == 4){
         std::string label_path = argv[2];
